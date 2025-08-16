@@ -78,7 +78,7 @@ $$
 Where δ<sub>C<sub>i</sub></sub> ∈ {0, 1} indicates whether the data belongs to the corresponding cognitive level. Bloom<sub>min</sub> and Bloom<sub>max</sub> represent the minimum and maximum Bloom scores in the dataset, respectively. ℂ represents the set of cognitive levels:
 
 $$
-C = \\{Remember, Understand, Apply, Analyze, Evaluate, Create\\}
+ℂ = \\{Remember, Understand, Apply, Analyze, Evaluate, Create\\}
 $$
 
 #### 🔗 Interdisciplinary Complexity (IC)
@@ -130,7 +130,7 @@ Where $L_\text{inst}$ and $L_\text{resp}$ represent the lengths of instructions 
 Another goal of the extrinsic hardness score is to identify samples in the dataset that are both isolated and representative, as these samples are more likely to be unfamiliar to the model and thus bring greater learning challenges. To this end, we performed K-Means clustering on the dataset based on TF-IDF vector representations and evaluated each sample using the silhouette coefficient:
 
 $$
-SC = \frac{\alpha - \beta}{\max\{\alpha, \beta\}}
+SC = \frac{\alpha - \beta}{\max\\{\alpha, \beta\\}}
 $$
 
 Where $\alpha$ refers to the minimum value of the average distance from the current data vector to all data in other clusters, and $\beta$ refers to the average distance from the current data vector to other data within the cluster.
