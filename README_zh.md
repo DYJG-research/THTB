@@ -71,16 +71,12 @@ THTB 包含三个核心选择阶段：
 3. 按照以下计算公式得到 Bloom 得分：
 
 $$
-\begin{equation}
-    Bloom = \frac{{\sum\limits_{i = 1}^6 {i \times {\delta _{{\mathbb{C}_i}}}}  - Bloo{m_{\min }}}}{{Bloo{m_{\max }} - Bloo{m_{\min }}}}
-\end{equation}
+Bloom = \frac{\sum_{i = 1}^6 i \times \delta_{C_i} - Bloom_{min}}{Bloom_{max} - Bloom_{min}}
 $$
 其中 δ<sub>C<sub>i</sub></sub> ∈ {0, 1} 表示数据是否属于相应的认知水平。Bloom<sub>min</sub> 和 Bloom<sub>max</sub> 分别表示数据集中的最小和最大布鲁姆分数。ℂ 表示认知水平集合：
 
 $$
-\begin{equation}
-    \mathbb{C} = \{ {\text{Remember,Uderstand,Apply,Analyze,Evaluate,Create}}\}
-\end{equation}
+ℂ  = \\{Remember, Understand, Apply, Analyze, Evaluate, Create\\}
 $$
 
 #### 🔗 跨学科复杂度（Interdisciplinary Complexity, IC）
@@ -97,18 +93,14 @@ $$
 对于给定的数据样本 *t*，将相关学科表示为 *s*<sub>1</sub>, *s*<sub>2</sub>, ..., *s*<sub>n</sub>。相应的学科嵌入集合表示为 𝕊<sub>t</sub> = { **s**<sub>1</sub>, **s**<sub>2</sub>, ..., **s**<sub>n</sub> }。整体 IC 使用以下公式计算：
 
 $$
-\begin{equation}
-    IC = \frac{{|{\mathbb{S}_t}| - |{\mathbb{S}_{\min }}|}}{{|{\mathbb{S}_{\max }}| - |{\mathbb{S}_{\min }}|}} + \frac{{\sum\limits_{i = 1}^{n - 1} {\sum\limits_{j = i + 1}^n {Dist({{s}_i},{{s}_j})} } }}{{C_{|{\mathbb{S}_t}|}^2}}
-\end{equation}
+IC = \frac{|S_t| - |S_{min}|}{|S_{max}| - |S_{min}|} + \frac{\sum_{i=1}^{n-1} \sum_{j=i+1}^n Dist(s_i, s_j)}{C_{|S_t|}^2}
 $$
 
-其中 $\mathbb{S}_{min}>$和$\mathbb{S}_{max}$分别代表数据集中涉及学科数目最少和最多的集合。${C_{|{\mathbb{S}_t}|}^2}$代表从$\mathbb{S}_t$个元素中任选两个的组合数。${Dist({{s}_i},{{s}_j})}$代表计算学科描述$s_i$和$s_j$之间的距离，公式如下：
+其中 $S_{min}$和$S_{max}$分别代表数据集中涉及学科数目最少和最多的集合。$C_{|S_t|}^2$代表从$S_t$个元素中任选两个的组合数。$Dist(s_i, s_j)$代表计算学科描述$s_i$和$s_j$之间的距离，公式如下：
 
 
 $$
-\begin{equation}
-    Dist({s_i},{s_j}) = 1 - \frac{{{s_i} \cdot {s_j}}}{{\left\| {{s_i}} \right\|\left\| {{s_j}} \right\|}}
-\end{equation}
+Dist(s_i, s_j) = 1 - \frac{s_i \cdot s_j}{||s_i|| \cdot ||s_j||}
 $$
 
 #### 📈 最终筛选
@@ -130,9 +122,7 @@ $$
 指令-响应扩展指数通过响应与指令的长度和比值来反映数据难度：指令和响应的总长度越长，模型学习越困难；响应与指令的长度比值越高，代表指令提供的上下文是有限的，解决该指令需要更多的知识。具体计算公式如下：
 
 $$
-\begin{equation}
-    IREI = \frac{{{L_{{\text{inst}}}} + {L_{{\text{resp}}}} - {L_{\min }}}}{{{L_{\max }} - {L_{\min }}}} + \frac{{{L_{{\text{resp}}}}}}{{{L_{{\text{inst}}}}}}
-\end{equation}
+IREI = \frac{L_{inst} + L_{resp} - L_{min}}{L_{max} - L_{min}} + \frac{L_{resp}}{L_{inst}}
 $$
 
 其中，$L_\text{inst}$和$$L_\text{resp}$$分别代表指令和响应的长度。$L_{min}$和$L_{max}$分别代表数据集中指令和响应最短和最长的长度和。
@@ -141,9 +131,7 @@ $$
 外在难度得分的另一个目标是识别数据集中既孤立又具有代表性的样本，因为这些样本更有可能不为模型所熟悉，因此会带来更大的学习挑战。为此，我们基于数据集的 TF-IDF 向量表示 对数据集进行了 K-Means 聚类，并使用轮廓系数对每个样本进行了评估：
 
 $$
-\begin{equation}
-    SC = \frac{{\alpha  - \beta }}{{\max \{ \alpha ,\beta \} }}
-\end{equation}
+SC = \frac{\alpha - \beta}{\max\\{\alpha, \beta\\}}
 $$
 
 其中$\alpha$指的是当前数据的向量到其他簇所有数据的平均距离的最小值，$\beta$指的是当前数据的向量到簇内其它数据的平均距离。
