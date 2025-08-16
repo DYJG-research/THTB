@@ -72,17 +72,13 @@ Based on Bloom's Taxonomy, we introduce Bloom scores to reflect the cognitive di
 3. Calculate Bloom scores using the following formula:
 
 $$
-\begin{equation}
-    Bloom = \frac{{\sum\limits_{i = 1}^6 {i \times {\delta _{{\mathbb{C}_i}}}}  - Bloo{m_{\min }}}}{{Bloo{m_{\max }} - Bloo{m_{\min }}}}
-\end{equation}
+Bloom = \frac{\sum_{i = 1}^6 i \times \delta_{C_i} - Bloom_{min}}{Bloom_{max} - Bloom_{min}}
 $$
 
 Where δ<sub>C<sub>i</sub></sub> ∈ {0, 1} indicates whether the data belongs to the corresponding cognitive level. Bloom<sub>min</sub> and Bloom<sub>max</sub> represent the minimum and maximum Bloom scores in the dataset, respectively. ℂ represents the set of cognitive levels:
 
 $$
-\begin{equation}
-    \mathbb{C} = \{ {\text{Remember,Understand,Apply,Analyze,Evaluate,Create}}\}
-\end{equation}
+\mathbb{C} = \{Remember, Understand, Apply, Analyze, Evaluate, Create\}
 $$
 
 #### 🔗 Interdisciplinary Complexity (IC)
@@ -97,17 +93,13 @@ We propose Interdisciplinary Complexity (IC) to measure the difficulty of solvin
 For a given data sample *t*, represent the related disciplines as *s*<sub>1</sub>, *s*<sub>2</sub>, ..., *s*<sub>n</sub>. The corresponding discipline embedding set is represented as 𝕊<sub>t</sub> = { **s**<sub>1</sub>, **s**<sub>2</sub>, ..., **s**<sub>n</sub> }. The overall IC is calculated using the following formula:
 
 $$
-\begin{equation}
-    IC = \frac{{|{\mathbb{S}_t}| - |{\mathbb{S}_{\min }}|}}{{|{\mathbb{S}_{\max }}| - |{\mathbb{S}_{\min }}|}} + \frac{{\sum\limits_{i = 1}^{n - 1} {\sum\limits_{j = i + 1}^n {Dist({{s}_i},{{s}_j})} } }}{{C_{|{\mathbb{S}_t}|}^2}}
-\end{equation}
+IC = \frac{|\mathbb{S}_t| - |\mathbb{S}_{min}|}{|\mathbb{S}_{max}| - |\mathbb{S}_{min}|} + \frac{\sum_{i=1}^{n-1} \sum_{j=i+1}^n Dist(s_i, s_j)}{C_{|\mathbb{S}_t|}^2}
 $$
 
 Where $\mathbb{S}_{\min}$ and $\mathbb{S}_{\max}$ represent the sets with the minimum and maximum number of disciplines in the dataset, respectively. ${C_{|{\mathbb{S}_t}|}^2}$ represents the number of combinations of selecting any two elements from $\mathbb{S}_t$. ${Dist({{s}_i},{{s}_j})}$ represents the distance calculation between discipline descriptions $s_i$ and $s_j$, with the formula as follows:
 
 $$
-\begin{equation}
-    Dist({s_i},{s_j}) = 1 - \frac{{{s_i} \cdot {s_j}}}{{\left\| {{s_i}} \right\|\left\| {{s_j}} \right\|}}
-\end{equation}
+Dist(s_i, s_j) = 1 - \frac{s_i \cdot s_j}{\|s_i\| \|s_j\|}
 $$
 
 #### 📈 Final Selection
@@ -129,9 +121,7 @@ The Extrinsic Hardness Score (EHS) consists of the following two dimensions:
 The Instruction-Response Expansion Index reflects data difficulty through the length sum and ratio of responses to instructions: the longer the total length of instructions and responses, the more difficult it is for the model to learn; the higher the ratio of response length to instruction length, the more limited the context provided by the instruction, requiring more knowledge to solve the instruction. The specific calculation formula is as follows:
 
 $$
-\begin{equation}
-    IREI = \frac{{{L_{{\text{inst}}}} + {L_{{\text{resp}}}} - {L_{\min }}}}{{{L_{\max }} - {L_{\min }}}} + \frac{{{L_{{\text{resp}}}}}}{{{L_{{\text{inst}}}}}}
-\end{equation}
+IREI = \frac{L_{inst} + L_{resp} - L_{min}}{L_{max} - L_{min}} + \frac{L_{resp}}{L_{inst}}
 $$
 
 Where $L_\text{inst}$ and $L_\text{resp}$ represent the lengths of instructions and responses, respectively. $L_{\min}$ and $L_{\max}$ represent the shortest and longest length sums of instructions and responses in the dataset, respectively.
@@ -140,9 +130,7 @@ Where $L_\text{inst}$ and $L_\text{resp}$ represent the lengths of instructions 
 Another goal of the extrinsic hardness score is to identify samples in the dataset that are both isolated and representative, as these samples are more likely to be unfamiliar to the model and thus bring greater learning challenges. To this end, we performed K-Means clustering on the dataset based on TF-IDF vector representations and evaluated each sample using the silhouette coefficient:
 
 $$
-\begin{equation}
-    SC = \frac{{\alpha  - \beta }}{{\max \{ \alpha ,\beta \} }}
-\end{equation}
+SC = \frac{\alpha - \beta}{\max\{\alpha, \beta\}}
 $$
 
 Where $\alpha$ refers to the minimum value of the average distance from the current data vector to all data in other clusters, and $\beta$ refers to the average distance from the current data vector to other data within the cluster.
