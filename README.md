@@ -78,7 +78,7 @@ $$
 Where δ<sub>C<sub>i</sub></sub> ∈ {0, 1} indicates whether the data belongs to the corresponding cognitive level. Bloom<sub>min</sub> and Bloom<sub>max</sub> represent the minimum and maximum Bloom scores in the dataset, respectively. ℂ represents the set of cognitive levels:
 
 $$
-\mathbb{C} = \{Remember, Understand, Apply, Analyze, Evaluate, Create\}
+C = \\{Remember, Understand, Apply, Analyze, Evaluate, Create\\}
 $$
 
 #### 🔗 Interdisciplinary Complexity (IC)
@@ -93,13 +93,13 @@ We propose Interdisciplinary Complexity (IC) to measure the difficulty of solvin
 For a given data sample *t*, represent the related disciplines as *s*<sub>1</sub>, *s*<sub>2</sub>, ..., *s*<sub>n</sub>. The corresponding discipline embedding set is represented as 𝕊<sub>t</sub> = { **s**<sub>1</sub>, **s**<sub>2</sub>, ..., **s**<sub>n</sub> }. The overall IC is calculated using the following formula:
 
 $$
-IC = \frac{|\mathbb{S}_t| - |\mathbb{S}_{min}|}{|\mathbb{S}_{max}| - |\mathbb{S}_{min}|} + \frac{\sum_{i=1}^{n-1} \sum_{j=i+1}^n Dist(s_i, s_j)}{C_{|\mathbb{S}_t|}^2}
+IC = \frac{|S_t| - |S_{min}|}{|S_{max}| - |S_{min}|} + \frac{\sum_{i=1}^{n-1} \sum_{j=i+1}^n Dist(s_i, s_j)}{C_{|S_t|}^2}
 $$
 
-Where $\mathbb{S}_{\min}$ and $\mathbb{S}_{\max}$ represent the sets with the minimum and maximum number of disciplines in the dataset, respectively. ${C_{|{\mathbb{S}_t}|}^2}$ represents the number of combinations of selecting any two elements from $\mathbb{S}_t$. ${Dist({{s}_i},{{s}_j})}$ represents the distance calculation between discipline descriptions $s_i$ and $s_j$, with the formula as follows:
+Where $S_{min}$ and $S_{max}$ represent the sets with the minimum and maximum number of disciplines in the dataset, respectively. $C_{|S_t|}^2$ represents the number of combinations of selecting any two elements from $S_t$. $Dist(s_i, s_j)$ represents the distance calculation between discipline descriptions $s_i$ and $s_j$, with the formula as follows:
 
 $$
-Dist(s_i, s_j) = 1 - \frac{s_i \cdot s_j}{\|s_i\| \|s_j\|}
+Dist(s_i, s_j) = 1 - \frac{s_i \cdot s_j}{||s_i|| \cdot ||s_j||}
 $$
 
 #### 📈 Final Selection
