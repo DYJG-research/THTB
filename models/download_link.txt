@@ -1,0 +1,2 @@
+InternLM2-7B-Reward https://www.modelscope.cn/models/Shanghai_AI_Laboratory/internlm2-7b-reward
+bge-large-en-v1.5 https://www.modelscope.cn/models/BAAI/bge-large-en-v1.5
